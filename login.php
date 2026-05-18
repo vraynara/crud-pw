@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="style.css">
+    <style> 
+        body{
+            background-image: url('img/fundo.png');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
-<body>
 
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
