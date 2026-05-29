@@ -1,77 +1,274 @@
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif; 
+    font-family: sans-serif;
 }
 
-body {
-    background-color: #ffffff; /* Verde bem claro do fundo */
+/* LOGIN */
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.login-container{
+    background-color: #611212;
+    padding: 70px 30px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 55px rgb(0,0,0);
+    width: 100%;
+    max-width: 380px;
+}
+
+.login-box h1{
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 50px;
+    color: #ffffff;
+}
+
+.input-group{
+    margin-bottom: 20px;
+}
+
+.input-group label{
+    display: block;
+    margin-bottom: 8px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.input-group input{
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+}
+
+.btn-entrar{
+    width: 100%;
+    padding: 12px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.btn-entrar:hover{
+    background: white;
+    color: black;
+}
+
+.login-body{
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.login-container {
-    background-color: #611212;
-    padding: 70px 30px;
-    border-radius: 15px;
-    box-shadow: 0px 10px 55px rgb(0, 0, 0);
+/* HOME */
+
+.home-body{
+    display: block;
+    background: #141414;
+    color: white;
+    min-height: 100vh;
+}
+
+.navbar{
     width: 100%;
-    max-width: 380px;
+    background: black;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid red;
 }
 
-.login-box h1 {
+.logo{
+    color: red;
+    font-size: 35px;
+}
+
+.menu{
+    display: flex;
+    gap: 25px;
+    list-style: none;
+}
+
+.menu a{
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.menu a:hover{
+    color: red;
+}
+
+.home-banner{
     text-align: center;
-    margin-bottom: 25px;
-    font-size: px;
-    color: #ffffff;
-    font-weight: bold;
+    margin-top: 120px;
 }
 
-.input-group {
+.home-banner h2{
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.home-banner p{
+    font-size: 22px;
+}
+
+/* CRUD */
+
+.crud-box{
+    width: 90%;
+    margin: 40px auto;
+    background: #1f1f1f;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.crud-box h2{
+    color: red;
+    margin-bottom: 25px;
+}
+
+.crud-form{
+    display: grid;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.crud-form input{
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+}
+
+.buttons{
+    display: flex;
+    gap: 10px;
+}
+
+.buttons button{
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    background: red;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.buttons button:hover{
+    background: white;
+    color: red;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th{
+    background: red;
+    padding: 15px;
+}
+
+table td{
+    background: #2a2a2a;
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #444;
+}
+/* BANNER */
+
+.banner{
+    width: 100%;
+    height: 85vh;
+    background-image: linear-gradient(to top, #141414, transparent),
+    url('https://wallpapercave.com/wp/wp4056410.jpg');
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+
+    padding-left: 60px;
+}
+
+.banner-content{
+    max-width: 500px;
+}
+
+.banner-content h2{
+    font-size: 70px;
     margin-bottom: 20px;
 }
 
-.input-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #ffffff;
+.banner-content p{
+    font-size: 20px;
+    margin-bottom: 20px;
+    line-height: 30px;
 }
 
-.input-group input {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1.5px solid #000000;
-    border-radius: 8px;
-    outline: none;
-    font-size: 14px;
-}
-
-.input-group input::placeholder {
-    color: #aaa;
-}
-
-.input-group input:focus {
-    border-color: #ffffff; /* Escurece a borda ao clicar */
-}
-
-.btn-entrar {
-    width: 100%;
-    padding: 12px;
-    background-color: #000000; /* Verde do botão */
-    color: rgb(255, 255, 255);
+.banner-content button{
+    padding: 14px 35px;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
+    background: red;
+    color: white;
     font-size: 18px;
     cursor: pointer;
-    transition: background 0.3s ease;
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
-.btn-entrar:hover {
-    background-color: #ffffff;
-    color: #000000;
+.banner-content button:hover{
+    background: white;
+    color: red;
+}
+
+/* CATALOGO */
+
+.catalogo{
+    padding: 40px 60px;
+}
+
+.catalogo h2{
+    margin-bottom: 25px;
+    font-size: 30px;
+}
+
+.filmes-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card{
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.card img{
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card h3{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.card:hover{
+    transform: scale(1.05);
 }
