@@ -36,7 +36,7 @@ include("conexao.php");
 
 <section class="crud-box">
 
-    <h2>CRUD DE SÉRIES</h2>
+    <h2>CRUD de séries</h2>
 
     <form class="crud-form">
 
@@ -63,15 +63,15 @@ include("conexao.php");
         </tr>
 
         <tr>
-            <td>Elite</td>
-            <td>8</td>
-            <td>Drama</td>
+            <td>Manifest</td>
+            <td>4</td>
+            <td>Misterio</td>
         </tr>
 
         <tr>
-            <td>Dark</td>
+            <td>Shadowhunters:caçadores das sombras</td>
             <td>3</td>
-            <td>Ficção</td>
+            <td>Fantasia</td>
         </tr>
 
     </table>

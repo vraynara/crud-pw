@@ -3,7 +3,7 @@ session_start();
 
 // Se NÃO existir a sessão, manda o usuário de volta para o login
 if (!isset($_SESSION['usuario_logado'])) {
-    header("Location: login.php"); // Altere para o nome exato do seu arquivo de login
+    header("Location: login.php"); 
     exit;
 }
 ?>
@@ -13,14 +13,12 @@ if (!isset($_SESSION['usuario_logado'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Netflix CRUD</title>
+    <title>Inicio</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="home-body">
-
-    <!-- MENU -->
     <header class="navbar">
 
         <h1 class="logo">NETFLIX</h1>
@@ -36,13 +34,12 @@ if (!isset($_SESSION['usuario_logado'])) {
 
     </header>
 
-    <!-- BANNER -->
     <section class="banner">
 
         <div class="banner-content">
+   <!-- nome do filme ou serie -->
 
-            <h2>STRANGER THINGS</h2>
-
+            <h2>Missão Impossível:O Acerto Final</h2>
             <p>
                 Mistério, ficção científica e suspense em uma das séries
                 mais famosas da Netflix.
@@ -67,8 +64,8 @@ if (!isset($_SESSION['usuario_logado'])) {
             </div>
 
             <div class="card">
-                <img src="https://image.tmdb.org/t/p/w500/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg">
-                <h3>Ad Astra: Rumo às Estrelas</h3>
+                <img src="img/derepente30.jpg">
+                <h3>De Repente 30</h3>
             </div>
 
             <div class="card">
@@ -113,8 +110,8 @@ if (!isset($_SESSION['usuario_logado'])) {
             </div>
 
             <div class="card">
-                <img src="img/sobrenatural.jpg">
-                <h3>Subrenatural</h3>
+                <img src="img/manifest.jpg">
+                <h3>Manifest</h3>
             </div>
 
             <div class="card">
