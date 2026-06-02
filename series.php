@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+// Se NÃO existir a sessão, manda o usuário de volta para o login
+if (!isset($_SESSION['usuario_logado'])) {
+    header("Location: login.php"); // Altere para o nome exato do seu arquivo de login
+    exit;
+}
+?>
+<?php
 include("conexao.php");
 ?>
 <!DOCTYPE html>

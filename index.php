@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+// Se NÃO existir a sessão, manda o usuário de volta para o login
+if (!isset($_SESSION['usuario_logado'])) {
+    header("Location: login.php"); // Altere para o nome exato do seu arquivo de login
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -54,27 +63,27 @@
 
             <div class="card">
                 <img src="https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg">
-                <h3>Round 6</h3>
-            </div>
-
-            <div class="card">
-                <img src="https://image.tmdb.org/t/p/w500/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg">
                 <h3>Stranger Things</h3>
             </div>
 
             <div class="card">
-                <img src="https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg">
-                <h3>Vingadores</h3>
+                <img src="https://image.tmdb.org/t/p/w500/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg">
+                <h3>Ad Astra: Rumo às Estrelas</h3>
             </div>
 
             <div class="card">
-                <img src="https://image.tmdb.org/t/p/w500/8Y43POKjjKDGI9MH89NW0NAzzp8.jpg">
-                <h3>La Casa de Papel</h3>
+                <img src="https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg">
+                <h3>Vingadores: Ultimato</h3>
+            </div>
+
+            <div class="card">
+                <img src="img/barbie.jpg">
+                <h3>Barbie:Escola de princesas</h3>
             </div>
 
             <div class="card">
                 <img src="https://image.tmdb.org/t/p/w500/q719jXXEzOoYaps6babgKnONONX.jpg">
-                <h3>The Witcher</h3>
+                <h3>Your Name</h3>
             </div>
 
         </div>
@@ -89,8 +98,8 @@
         <div class="filmes-grid">
 
             <div class="card">
-                <img src="https://image.tmdb.org/t/p/w500/34OGjFEbHj0E3lE2w0iTUVq0CBz.jpg">
-                <h3>Dark</h3>
+                <img src="img/shadowhunters.jpg">
+                <h3>Shadowhunters:caçadores das sombras </h3>
             </div>
 
             <div class="card">
@@ -100,17 +109,17 @@
 
             <div class="card">
                 <img src="https://image.tmdb.org/t/p/w500/9OYu6oDLIidSOocW3JTGtd2Oyqy.jpg">
-                <h3>Peaky Blinders</h3>
+                <h3>The Good Doctor: O Bom Doutor</h3>
             </div>
 
             <div class="card">
-                <img src="https://image.tmdb.org/t/p/w500/6UH52Fmau8RPsMAbQbjwN3wJSCj.jpg">
-                <h3>Lucifer</h3>
+                <img src="img/sobrenatural.jpg">
+                <h3>Subrenatural</h3>
             </div>
 
             <div class="card">
                 <img src="https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg">
-                <h3>You</h3>
+                <h3> Top Gun: Maverick</h3>
             </div>
 
         </div>
