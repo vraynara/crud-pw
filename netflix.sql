@@ -1,21 +1,30 @@
+CREATE DATABASE IF NOT EXISTS netflix;
+USE netflix;
+
+-- TABELA FILMES
+
 CREATE TABLE filmes (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100),
-    categoria VARCHAR(100),
-    ano INT
+    nome VARCHAR(100) NOT NULL,
+    categoria VARCHAR(100) NOT NULL,
+    ano INT NOT NULL
 );
+
+-- TABELA SERIES
 
 CREATE TABLE series (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100),
-    temporadas INT,
-    genero VARCHAR(100)
+    nome VARCHAR(100) NOT NULL,
+    temporadas INT NOT NULL,
+    genero VARCHAR(100) NOT NULL
 );
+
+-- TABELA USUARIOS
 
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100),
-    email VARCHAR(100),
-    senha VARCHAR(100),
-    plano VARCHAR(50)
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    plano VARCHAR(50) NOT NULL
 );

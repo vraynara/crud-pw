@@ -1,68 +1,142 @@
 <?php
-// OBRIGATÓRIO: Inicia o sistema de sessões para validar o usuário
 session_start();
 
-// SE NÃO existir o crachá do usuário logado, manda ele direto de volta para o login
 if (!isset($_SESSION['usuario_logado'])) {
-    header("Location: login.php"); // Altere aqui se o seu arquivo tiver outro nome (ex: index.php de login)
+    header("Location: login.php");
     exit;
 }
 
-include("conexao.php");
+require_once "conexao.php";
 
-if (isset($_POST['salvar'])) {
-    // É uma boa prática limpar o texto recebido para evitar erros de sintaxe no banco
-    $nome = mysqli_real_escape_string($conn, $_POST['nome']);
-    
-    // Deixando a query em uma linha única e legível
-    $sql = "INSERT INTO categorias (nome) VALUES ('$nome')";
-    
-    // Executa e verifica se deu certo
-    if (mysqli_query($conn, $sql)) {
-        echo "<script>alert('Categoria salva com sucesso!');</script>";
-    } else {
-        echo "<script>alert('Erro ao salvar: " . mysqli_error($conn) . "');</script>";
-    }
+/* CADASTRAR */
+
+if(isset($_POST['cadastrar'])){
+
+    $sql = "INSERT INTO categorias(nome)
+            VALUES(:nome)";
+
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->execute([
+        ':nome' => $_POST['nome']
+    ]);
+
+    header("Location: categorias.php");
+    exit;
+}
+
+/* EXCLUIR */
+
+if(isset($_GET['excluir'])){
+
+    $id = (int)$_GET['excluir'];
+
+    $sql = "DELETE FROM categorias
+            WHERE id = :id";
+
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->execute([
+        ':id' => $id
+    ]);
+
+    header("Location: categorias.php");
+    exit;
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categorias</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-    <div style="padding: 10px; background: #222; margin-bottom: 20px;">
-        <a href="index.php" style="color: white; margin-right: 15px; text-decoration: none;">🏠 Voltar ao Catálogo</a>
-        <a href="sair.php" style="color: #ff4444; text-decoration: none;">🚪 Sair</a>
-    </div>
+<body class="home-body">
 
-    <h1>CRUD Categorias</h1>
+<header class="navbar">
 
-    <form method="POST">
-        <input type="text" name="nome" placeholder="Categoria" required>
-        <button name="salvar">Salvar</button>
+    <h1 class="logo">NETFLIX</h1>
+
+    <nav>
+        <ul class="menu">
+            <li><a href="index.php">Home</a></li>
+            <li><a href="filmes.php">Filmes</a></li>
+            <li><a href="series.php">Séries</a></li>
+            <li><a href="usuarios.php">Usuários</a></li>
+            <li><a href="categorias.php">Categorias</a></li>
+            <li><a href="sair.php">Sair</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<div class="crud-box">
+
+    <h2>Cadastro de Categorias</h2>
+
+    <form method="POST" class="crud-form">
+
+        <input
+            type="text"
+            name="nome"
+            placeholder="Nome da Categoria"
+            required
+        >
+
+        <div class="buttons">
+            <button type="submit" name="cadastrar">
+                Cadastrar
+            </button>
+        </div>
+
     </form>
 
-    <hr>
+    <table>
 
-    <div class="categorias-lista">
+        <tr>
+            <th>ID</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+        </tr>
+
         <?php
-        $sql = "SELECT * FROM categorias ORDER BY id DESC";
-        $resultado = mysqli_query($conn, $sql);
 
-        while($dados = mysqli_fetch_assoc($resultado)){
-            echo "
-            <div class='card'>
-                <h3>".$dados['nome']."</h3>
-            </div>
-            ";
-        }
+        $sql = "SELECT * FROM categorias ORDER BY id DESC";
+
+        $stmt = $pdo->query($sql);
+
+        while($categoria = $stmt->fetch(PDO::FETCH_ASSOC)){
+
         ?>
-    </div>
+
+        <tr>
+
+            <td><?= $categoria['id'] ?></td>
+
+            <td><?= $categoria['nome'] ?></td>
+
+            <td>
+
+                <a
+                    href="categorias.php?excluir=<?= $categoria['id'] ?>"
+                    onclick="return confirm('Excluir categoria?')">
+                    Excluir
+                </a>
+
+            </td>
+
+        </tr>
+
+        <?php } ?>
+
+    </table>
+
+</div>
 
 </body>
 </html>

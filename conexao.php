@@ -1,10 +1,23 @@
 <?php
 
 $host = "localhost";
+$banco = "netflix";
 $usuario = "root";
 $senha = "";
-$banco = "netflix";
 
-$conexao = new mysqli($host, $usuario, $senha, $banco);
+try {
 
+    $pdo = new PDO(
+        "mysql:host=$host;dbname=$banco;charset=utf8",
+        $usuario,
+        $senha
+    );
+
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+} catch(PDOException $e){
+
+    die("Erro: " . $e->getMessage());
+
+}
 ?>
