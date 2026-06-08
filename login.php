@@ -37,13 +37,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="style.css">
 
     <style>
-        body{
-            background-image: url('img/fundo.png');
-            background-size: cover;
-            background-position: center;
-        }
-    </style>
+    body{
+        margin: 0;
+        min-height: 100vh;
 
+        background-image: url("img/fundo.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+    }
+    </style>
 </head>
 
 <body class="login-body">

@@ -1,9 +1,9 @@
 <?php
 
-$host = "localhost";
+$host = "mysql";
 $banco = "netflix";
 $usuario = "root";
-$senha = "";
+$senha = "root";
 
 try {
 

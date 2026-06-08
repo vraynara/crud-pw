@@ -5,9 +5,7 @@
     font-family:Arial, Helvetica, sans-serif;
 }
 
-/* =========================
-   LOGIN
-========================= */
+/* LOGIN */
 
 .login-body{
     background:#141414;
@@ -63,9 +61,7 @@
     background:#b20710;
 }
 
-/* =========================
-   HOME
-========================= */
+/* HOME */
 
 .home-body{
     background:#141414;
@@ -73,9 +69,7 @@
     min-height:100vh;
 }
 
-/* =========================
-   NAVBAR
-========================= */
+/*NAVBAR */
 
 .navbar{
     background:#000;
@@ -108,9 +102,7 @@
     color:#e50914;
 }
 
-/* =========================
-   BANNER
-========================= */
+/* BANNER= */
 
 .banner{
     height:80vh;
@@ -157,9 +149,7 @@
     background:#b20710;
 }
 
-/* =========================
-   CATÁLOGO
-========================= */
+/* CATÁLOGO */
 
 .catalogo{
     padding:40px;
@@ -170,19 +160,13 @@
     font-size:28px;
 }
 
-/* =========================
-   GRID
-========================= */
-
 .filmes-grid{
     display:grid;
     grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
     gap:20px;
 }
 
-/* =========================
-   CARD FILMES
-========================= */
+/* CARD FILMES */
 
 .card{
     position:relative;
@@ -208,10 +192,6 @@
     background:#1c1c1c;
     padding:10px;
 }
-
-/* =========================
-   RESUMO
-========================= */
 
 .filme-info{
     position:absolute;
@@ -252,9 +232,7 @@
     visibility:visible;
 }
 
-/* =========================
-   CRUD
-========================= */
+/* CRUD */
 
 .crud-box{
     width:90%;
@@ -299,10 +277,6 @@
     background:#b20710;
 }
 
-/* =========================
-   TABELA
-========================= */
-
 table{
     width:100%;
     border-collapse:collapse;
@@ -330,10 +304,6 @@ table a{
 table a:hover{
     color:#e50914;
 }
-
-/* =========================
-   RESPONSIVO
-========================= */
 
 @media(max-width:768px){
 
