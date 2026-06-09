@@ -1,9 +1,6 @@
 <?php
-// OBRIGATÓRIO: Iniciar a sessão sempre na PRIMEIRA linha do arquivo, antes de qualquer HTML
 session_start();
 
-// Se o usuário já estiver logado e tentar entrar na página de login, 
-// nós mandamos ele direto para o index.php
 if (isset($_SESSION['usuario_logado'])) {
     header("Location: index.php");
     exit;
@@ -14,13 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $senha = $_POST['senha'];
 
     if (!empty($email) && !empty($senha)) {
-        // [OPCIONAL] Aqui depois você pode colocar a verificação do banco de dados.
-        // Por enquanto, qualquer e-mail e senha vão dar acesso.
         
-        // Criamos o "crachá" do usuário na sessão
         $_SESSION['usuario_logado'] = $email;
 
-        // Redireciona para a página principal protegida
         header("Location: index.php");
         exit;
     }
@@ -35,19 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login</title>
 
     <link rel="stylesheet" href="style.css">
-
-    <style>
-    body{
-        margin: 0;
-        min-height: 100vh;
-
-        background-image: url("img/fundo.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-        background-attachment: fixed;
-    }
-    </style>
 </head>
 
 <body class="login-body">
