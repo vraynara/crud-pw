@@ -174,14 +174,14 @@ if (!isset($_SESSION['usuario_logado'])) {
             <img src="https://image.tmdb.org/t/p/w500/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg">
 
             <div class="filme-info">
-                <h4>Breaking Bad</h4>
+                <h4>La Casa de Papel</h4>
                 <p>
-                    Um professor de química entra no mundo do tráfico
-                    após descobrir uma doença grave.
+                    um grupo de ladrões liderados pelo “Professor” que planeja grandes assaltos, 
+                    principalmente à Casa da Moeda da Espanha, enquanto enfrenta a polícia e conflitos internos.
                 </p>
             </div>
 
-            <h3>Breaking Bad</h3>
+            <h3>La Casa de Papel</h3>
 
         </div>
 
