@@ -1,21 +1,38 @@
 <?php
 session_start();
+require "conexao.php";
 
 if (isset($_SESSION['usuario_logado'])) {
     header("Location: index.php");
     exit;
 }
 
+$erro = null;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
     if (!empty($email) && !empty($senha)) {
-        
-        $_SESSION['usuario_logado'] = $email;
 
-        header("Location: index.php");
-        exit;
+        $sql = "SELECT * FROM login WHERE email = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$email]);
+
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // 🔥 SEM HASH (comparação direta)
+        if ($usuario && $senha === $usuario['senha']) {
+
+            $_SESSION['usuario_logado'] = $usuario['email'];
+
+            header("Location: index.php");
+            exit;
+
+        } else {
+            $erro = "Email ou senha inválidos!";
+        }
     }
 }
 ?>
@@ -29,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <link rel="stylesheet" href="style.css">
 </head>
+
 
 <body class="login-body">
 
@@ -53,6 +71,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
 
     </div>
+    <?php if 
+        (isset($erro)) { echo "<p style='color:red;'>$erro</p>"; } 
+        ?> 
 
 </body>
 </html>
