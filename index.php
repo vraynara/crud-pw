@@ -24,12 +24,11 @@ if (!isset($_SESSION['usuario_logado'])) {
     <h1 class="logo">NETFLIX</h1>
 
     <nav>
-        <ul class="menu">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="filmes.php">Filmes</a></li>
-            <li><a href="series.php">Séries</a></li>
-            <li><a href="usuarios.php">Usuários</a></li>
-            <li><a href="sair.php">Sair</a></li>
+        <li><a href="../index.php">Home</a></li>
+        <li><a href="index.php">Filmes</a></li>
+        <li><a href="../series/index.php">Séries</a></li>
+        <li><a href="../usuarios/index.php">Usuários</a></li>
+        <li><a href="../sair.php">Sair</a></li>
         </ul>
     </nav>
 

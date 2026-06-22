@@ -2,11 +2,11 @@
 session_start();
 
 if (!isset($_SESSION['usuario_logado'])) {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit;
 }
 
-require_once "conexao.php";
+require_once "../conexao.php";
 
 $editando = false;
 $dados = [];
@@ -29,69 +29,6 @@ if (isset($_GET['editar'])) {
 
     $dados = $stmt->fetch(PDO::FETCH_ASSOC);
 }
-
-/* CADASTRAR */
-
-if (isset($_POST['cadastrar'])) {
-
-    $sql = "INSERT INTO usuarios
-            (nome,email,senha,plano)
-            VALUES
-            (:nome,:email,:senha,:plano)";
-
-    $stmt = $pdo->prepare($sql);
-
-    $stmt->execute([
-        ':nome' => $_POST['nome'],
-        ':email' => $_POST['email'],
-        ':senha' => password_hash($_POST['senha'], PASSWORD_DEFAULT),
-        ':plano' => $_POST['plano']
-    ]);
-
-    header("Location: usuarios.php");
-    exit;
-}
-
-/* ATUALIZAR */
-
-if (isset($_POST['atualizar'])) {
-
-    $sql = "UPDATE usuarios SET
-            nome = :nome,
-            email = :email,
-            plano = :plano
-            WHERE id = :id";
-
-    $stmt = $pdo->prepare($sql);
-
-    $stmt->execute([
-        ':nome' => $_POST['nome'],
-        ':email' => $_POST['email'],
-        ':plano' => $_POST['plano'],
-        ':id' => $_POST['id']
-    ]);
-
-    header("Location: usuarios.php");
-    exit;
-}
-
-/* EXCLUIR */
-
-if (isset($_GET['excluir'])) {
-
-    $id = (int) $_GET['excluir'];
-
-    $sql = "DELETE FROM usuarios WHERE id = :id";
-
-    $stmt = $pdo->prepare($sql);
-
-    $stmt->execute([
-        ':id' => $id
-    ]);
-
-    header("Location: usuarios.php");
-    exit;
-}
 ?>
 
 <!DOCTYPE html>
@@ -102,7 +39,7 @@ if (isset($_GET['excluir'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuários</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body class="home-body">
@@ -112,12 +49,12 @@ if (isset($_GET['excluir'])) {
     <h1 class="logo">NETFLIX</h1>
 
     <nav>
-        <ul class="menu">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="filmes.php">Filmes</a></li>
-            <li><a href="series.php">Séries</a></li>
-            <li><a href="usuarios.php">Usuários</a></li>
-            <li><a href="sair.php">Sair</a></li>
+            <ul class="menu">
+            <li><a href="../index.php">Home</a></li>
+            <li><a href="index.php">Filmes</a></li>
+            <li><a href="../series/index.php">Séries</a></li>
+            <li><a href="../usuarios/index.php">Usuários</a></li>
+            <li><a href="../sair.php">Sair</a></li>
         </ul>
     </nav>
 
@@ -127,14 +64,16 @@ if (isset($_GET['excluir'])) {
 
     <h2>Cadastro de Usuários</h2>
 
-    <form method="POST" class="crud-form">
+    <form
+        method="POST"
+        action="<?= $editando ? 'update.php' : 'store.php' ?>"
+        class="crud-form">
 
         <?php if($editando): ?>
             <input
                 type="hidden"
                 name="id"
-                value="<?= $dados['id'] ?>"
-            >
+                value="<?= $dados['id'] ?>">
         <?php endif; ?>
 
         <input
@@ -142,24 +81,21 @@ if (isset($_GET['excluir'])) {
             name="nome"
             placeholder="Nome"
             value="<?= $editando ? $dados['nome'] : '' ?>"
-            required
-        >
+            required>
 
         <input
             type="email"
             name="email"
             placeholder="Email"
             value="<?= $editando ? $dados['email'] : '' ?>"
-            required
-        >
+            required>
 
         <?php if(!$editando): ?>
         <input
             type="password"
             name="senha"
             placeholder="Senha"
-            required
-        >
+            required>
         <?php endif; ?>
 
         <input
@@ -167,20 +103,19 @@ if (isset($_GET['excluir'])) {
             name="plano"
             placeholder="Plano"
             value="<?= $editando ? $dados['plano'] : '' ?>"
-            required
-        >
+            required>
 
         <div class="buttons">
 
             <?php if($editando): ?>
 
-                <button type="submit" name="atualizar">
+                <button type="submit">
                     Atualizar
                 </button>
 
             <?php else: ?>
 
-                <button type="submit" name="cadastrar">
+                <button type="submit">
                     Cadastrar
                 </button>
 
@@ -219,14 +154,14 @@ if (isset($_GET['excluir'])) {
 
             <td>
 
-                <a href="usuarios.php?editar=<?= $usuario['id'] ?>">
+                <a href="index.php?editar=<?= $usuario['id'] ?>">
                     Editar
                 </a>
 
                 |
 
                 <a
-                    href="usuarios.php?excluir=<?= $usuario['id'] ?>"
+                    href="delete.php?id=<?= $usuario['id'] ?>"
                     onclick="return confirm('Excluir usuário?')">
                     Excluir
                 </a>

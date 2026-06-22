@@ -2,12 +2,11 @@
 session_start();
 
 if (!isset($_SESSION['usuario_logado'])) {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit;
 }
 
-require_once "conexao.php";
-
+require_once "../conexao.php";
 
 $editando = false;
 $dados = [];
@@ -30,68 +29,6 @@ if (isset($_GET['editar'])) {
 
     $dados = $stmt->fetch(PDO::FETCH_ASSOC);
 }
-
-/* CADASTRAR */
-
-if (isset($_POST['cadastrar'])) {
-
-    $sql = "INSERT INTO series
-            (nome,temporadas,genero)
-            VALUES
-            (:nome,:temporadas,:genero)";
-
-    $stmt = $pdo->prepare($sql);
-
-    $stmt->execute([
-        ':nome' => $_POST['nome'],
-        ':temporadas' => $_POST['temporadas'],
-        ':genero' => $_POST['genero']
-    ]);
-
-    header("Location: series.php");
-    exit;
-}
-
-/* ATUALIZAR */
-
-if (isset($_POST['atualizar'])) {
-
-    $sql = "UPDATE series SET
-            nome = :nome,
-            temporadas = :temporadas,
-            genero = :genero
-            WHERE id = :id";
-
-    $stmt = $pdo->prepare($sql);
-
-    $stmt->execute([
-        ':nome' => $_POST['nome'],
-        ':temporadas' => $_POST['temporadas'],
-        ':genero' => $_POST['genero'],
-        ':id' => $_POST['id']
-    ]);
-
-    header("Location: series.php");
-    exit;
-}
-
-/* EXCLUIR */
-
-if (isset($_GET['excluir'])) {
-
-    $id = (int) $_GET['excluir'];
-
-    $sql = "DELETE FROM series WHERE id = :id";
-
-    $stmt = $pdo->prepare($sql);
-
-    $stmt->execute([
-        ':id' => $id
-    ]);
-
-    header("Location: series.php");
-    exit;
-}
 ?>
 
 <!DOCTYPE html>
@@ -102,7 +39,7 @@ if (isset($_GET['excluir'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Séries</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body class="home-body">
@@ -113,11 +50,11 @@ if (isset($_GET['excluir'])) {
 
     <nav>
         <ul class="menu">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="filmes.php">Filmes</a></li>
-            <li><a href="series.php">Séries</a></li>
-            <li><a href="usuarios.php">Usuários</a></li>
-            <li><a href="sair.php">Sair</a></li>
+            <li><a href="../index.php">Home</a></li>
+            <li><a href="../filmes.php">Filmes</a></li>
+            <li><a href="index.php">Séries</a></li>
+            <li><a href="../usuarios/index.php">Usuários</a></li>
+            <li><a href="../sair.php">Sair</a></li>
         </ul>
     </nav>
 
@@ -127,14 +64,16 @@ if (isset($_GET['excluir'])) {
 
     <h2>Cadastro de Séries</h2>
 
-    <form method="POST" class="crud-form">
+    <form
+        method="POST"
+        action="<?= $editando ? 'update.php' : 'store.php' ?>"
+        class="crud-form">
 
         <?php if($editando): ?>
             <input
                 type="hidden"
                 name="id"
-                value="<?= $dados['id'] ?>"
-            >
+                value="<?= $dados['id'] ?>">
         <?php endif; ?>
 
         <input
@@ -142,36 +81,33 @@ if (isset($_GET['excluir'])) {
             name="nome"
             placeholder="Nome da Série"
             value="<?= $editando ? $dados['nome'] : '' ?>"
-            required
-        >
+            required>
 
         <input
             type="number"
             name="temporadas"
             placeholder="Temporadas"
             value="<?= $editando ? $dados['temporadas'] : '' ?>"
-            required
-        >
+            required>
 
         <input
             type="text"
             name="genero"
             placeholder="Gênero"
             value="<?= $editando ? $dados['genero'] : '' ?>"
-            required
-        >
+            required>
 
         <div class="buttons">
 
             <?php if($editando): ?>
 
-                <button type="submit" name="atualizar">
+                <button type="submit">
                     Atualizar
                 </button>
 
             <?php else: ?>
 
-                <button type="submit" name="cadastrar">
+                <button type="submit">
                     Cadastrar
                 </button>
 
@@ -210,14 +146,14 @@ if (isset($_GET['excluir'])) {
 
             <td>
 
-                <a href="series.php?editar=<?= $serie['id'] ?>">
+                <a href="index.php?editar=<?= $serie['id'] ?>">
                     Editar
                 </a>
 
                 |
 
                 <a
-                    href="series.php?excluir=<?= $serie['id'] ?>"
+                    href="delete.php?id=<?= $serie['id'] ?>"
                     onclick="return confirm('Excluir série?')">
                     Excluir
                 </a>
